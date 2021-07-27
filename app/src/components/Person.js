@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {getPerson} from '../actions'
 import '../App.css'
 const Person = (props) => {
+    
     const {person, error, isFetching} = props
     useEffect(() => {
         props.getPerson()
@@ -10,25 +11,27 @@ const Person = (props) => {
 
 
     if (error) {
-        return (<div class="alert alert-danger" role="alert">
+        return (<div className="alert alert-danger" role="alert">
         {error}
       </div>)
     }
 
     if(isFetching) {
-        return (<div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
+        return (<div className="spinner-border" role="status">
+        <span className="visually-hidden">Loading...</span>
       </div>)
     }
 
     const handleClick = () => {
-        props.getPerson()
+        props.getPerson();
     }
+   
     return (
         <div>
             <h3>The force is with: </h3>
                 <h4>{person.name}</h4>
-            <button class="btn btn-secondary" onClick={handleClick}>Get new Galaxy Explorer</button>
+            
+            <button className="btn btn-secondary" onClick={handleClick}>Get new Galaxy Explorer</button>
         </div>
 
     )
@@ -37,7 +40,8 @@ const mapStatetoProps = (state) =>{
     return{
         person: state.person,
         isFetching: state.isFetching,
-        error: state.error
+        error: state.error,
+        films: state.person.films
     
     }
 }
